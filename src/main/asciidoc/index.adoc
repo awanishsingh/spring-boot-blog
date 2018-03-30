@@ -1,0 +1,39 @@
+= Spring Boot Blog
+
+Spring Boot Blog is a simple blogging web application. You can use it for reference.
+
+== Use cases
+
+Supports 2 roles: visitors (unregistered users), and admins (registered users).
+
+Visitor's use cases:
+
+* See published posts
+* See approved comments
+* Submit comments
+
+Admin's use cases:
+
+* Write posts
+* Publish / Unpublish posts
+* Manage posts
+* Manage comments
+* See number of views
+
+== Design
+
+MVC architecture is used.
+
+Databases: Production MySQL, Development H2
+
+Database schema:
+
+* Database springblog
+* Table user = {id, name, email, username, password}
+* Table blog_post = {id, author_id, title, body, create_date, publish_date}
+* Table blog_comment = {id, post_id, commenter_name, title, body, create_date, approve_date}
+* Table blog_post_view = {id, post_id, view_date}
+
+UI:
+
+* Pages: /, /post, /login, /admin, /admin/write, /admin/comments, /comment
