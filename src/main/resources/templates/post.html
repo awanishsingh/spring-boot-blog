@@ -6,18 +6,10 @@
     <body>
         <main role="main" class="container" layout:fragment="main-content">
             <div class="row">
-
-                <div class="col-md-8 blog-main" th:if="${posts.isEmpty()}">
+                <div class="col-md-8 blog-main">
 
                     <div class="blog-post">
-                        <h2 class="blog-post-title">There is no post.</h2>
-                    </div>
-
-                </div>
-                <div class="col-md-8 blog-main" th:unless="${posts.isEmpty()}">
-
-                    <div class="blog-post" th:each="post: ${posts}">
-                        <h2 class="blog-post-title"><a th:href="@{/post/{id}(id=${post.id})}" th:text="${post.title}">Title</a></h2>
+                        <h2 class="blog-post-title" th:text="${post.title}">Title</h2>
                         <p class="blog-post-meta"><span th:text="${#dates.format(post.publishDate, 'dd-MMM-yyyy')}"/> by <a href="#" th:text="${post.author.name}">Mark</a></p>
 
                         <p th:text="${post.body}">This blog post shows a few different types of content that's supported and styled with Bootstrap. 
@@ -32,7 +24,7 @@
                     <div class="p-3">
                         <h4 class="font-italic">Archives</h4>
                         <ol class="list-unstyled mb-0">
-                            <li th:each="title: ${titles}"><a th:href="@{/post/{id}(id=${title.id})}" th:text="${title.title}">Archive title</a></li>
+                            <li th:each="title: ${titles}"><a th:href="@{/post/{id}(id=${title.id})}" th:text="${title.title}">March 2014</a></li>
                         </ol>
                     </div>
 
