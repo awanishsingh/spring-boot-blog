@@ -14,8 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -34,11 +34,11 @@ public class BlogComment {
     private BlogPost blogPost;
     
     @NotNull
-    @Min(value = 3)
+    @Size(min = 3)
     private String commenterName;
     
     @NotNull
-    @Min(value = 3)
+    @Size(min = 3)
     private String title;
     
     @NotNull

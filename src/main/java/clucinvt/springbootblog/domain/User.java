@@ -12,8 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -29,7 +29,7 @@ public class User {
     private int id;
     
     @NotNull
-    @Min(value = 3)
+    @Size(min = 3)
     private String name;
     
     @NotNull
@@ -38,7 +38,7 @@ public class User {
     private String email;
     
     @NotNull
-    @Min(value = 3)
+    @Size(min = 3)
     @Column(unique = true)
     private String username;
     
