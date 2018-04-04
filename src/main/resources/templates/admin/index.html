@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/template-admin.html}" xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" layout:fragment="main-content">
+
+            <h2>Blog posts</h2>
+
+            <div th:if="${posts.isEmpty()}">
+                There is no post.
+            </div>
+            <div class="table-responsive" th:unless="${posts.isEmpty()}">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Create Date</th>
+                            <th>Publish Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post: ${posts}">
+                            <td th:text="${post.id}">1</td>
+                            <td><a th:href="@{/admin/write/{id}(id=${post.id})}" th:text="${post.title}">title</a></td>
+                            <td th:text="${post.authorName}">ipsum</td>
+                            <td th:text="${post.createDate}">dolor</td>
+                            <td th:text="${post.publishDate}">sit</td>
+                            <td>
+                                <div th:if="${post.publishDate == null}">
+                                    <form th:action="@{/admin/publish}" method="post">
+                                        <input type="hidden" id="id" th:value="*{post.id}" />
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Publish</button>
+                                    </form>
+                                </div>
+                                <div th:if="${post.publishDate != null}">
+                                    <form th:action="@{/admin/unpublish}" method="post">
+                                        <input type="hidden" id="id" th:value="*{post.id}" />
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Unpublish</button>
+                                    </form>
+                                </div>                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </body>
+
+</html>

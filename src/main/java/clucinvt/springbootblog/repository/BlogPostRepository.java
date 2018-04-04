@@ -6,6 +6,7 @@
 package clucinvt.springbootblog.repository;
 
 import clucinvt.springbootblog.domain.BlogPost;
+import clucinvt.springbootblog.repository.projection.BlogPostDescriptor;
 import clucinvt.springbootblog.repository.projection.BlogPostTitle;
 import java.util.List;
 import org.springframework.data.domain.Page;
@@ -27,4 +28,8 @@ public interface BlogPostRepository extends JpaRepository<BlogPost, Integer> {
     
     @Query("SELECT p.id as id, p.title as title FROM BlogPost p WHERE publishDate IS NOT NULL ORDER BY publishDate DESC")
     Page<BlogPostTitle> findPublishedPostTitles(Pageable pageable);
+    
+    @Query("SELECT p.id as id, p.title as title, p.author.name as authorName, p.createDate as createDate, p.publishDate as publishDate"
+            + " FROM BlogPost p ORDER BY createDate DESC")
+    List<BlogPostDescriptor> findAllPostDescriptors();
 }
