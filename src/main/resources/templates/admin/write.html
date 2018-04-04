@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/template-admin.html}" xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" layout:fragment="main-content">
+
+            <div th:if="${post == null}">
+                <h2>New post</h2>
+
+                <form id="newPostForm" action="#" th:action="@{/admin/write}" th:object="${newpost}" method="post">                    
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" th:field="*{title}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea id="editor" th:field="*{body}" />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </form>
+            </div>
+            <div th:unless="${post == null}">
+                <h2>Edit post</h2>
+
+                <form id="editPostForm" action="#" th:action="@{/admin/write}" th:object="${post}" method="post">
+                    <input type="hidden" name="id" th:value="*{id}" />
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" th:field="*{title}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea id="editor" th:field="*{body}" />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </form>
+            </div>
+
+        </main>
+
+        <script layout:fragment="script">
+            $(function () {
+                $('#editor').jqte();
+            });
+        </script>
+
+    </body>
+
+</html>

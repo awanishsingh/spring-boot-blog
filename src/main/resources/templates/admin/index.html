@@ -32,13 +32,13 @@
                             <td>
                                 <div th:if="${post.publishDate == null}">
                                     <form th:action="@{/admin/publish}" method="post">
-                                        <input type="hidden" id="id" th:value="*{post.id}" />
+                                        <input type="hidden" name="id" th:value="*{post.id}" />
                                         <button type="submit" class="btn btn-sm btn-outline-secondary">Publish</button>
                                     </form>
                                 </div>
                                 <div th:if="${post.publishDate != null}">
                                     <form th:action="@{/admin/unpublish}" method="post">
-                                        <input type="hidden" id="id" th:value="*{post.id}" />
+                                        <input type="hidden" name="id" th:value="*{post.id}" />
                                         <button type="submit" class="btn btn-sm btn-outline-secondary">Unpublish</button>
                                     </form>
                                 </div>                                
