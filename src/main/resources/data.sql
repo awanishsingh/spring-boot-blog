@@ -1,3 +1,5 @@
+-- Be cautious when you edit this file. It initializes data for unit tests and integration tests.
+
 INSERT INTO user (name, email, username, password) VALUES ('Administrator', 'admin@localhost', 'admin', '$2a$04$VXb9pY5bt3YcBd4i4h4/ZeuRC0vF4Evm18m4OKraib9CdvfEbwzZm')
 
 INSERT INTO blog_post (author_id, title, body, create_date, publish_date) VALUES (1, 'Hello Blog', 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.', '2018-03-25 17:30:00', '2018-03-25 17:30:00')
