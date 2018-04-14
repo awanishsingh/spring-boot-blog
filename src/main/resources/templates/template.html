@@ -22,15 +22,16 @@
                     <div class="col-4 text-center">
                         <a class="blog-header-logo text-dark" href="/">Spring Blog</a>
                     </div>
-                    <div class="col-4 d-flex justify-content-end align-items-center">
-                        <div sec:authorize="${isAuthenticated()}">
-                            <form th:action="@{/logout}" method="post">
-                                <input type="submit" class="btn btn-sm btn-outline-secondary" value="Sign Out"/>
-                            </form>
-                        </div>
-                        <div sec:authorize="${isAnonymous()}">
-                            <a class="btn btn-sm btn-outline-secondary" href="/login">Sign in</a>
-                        </div>
+
+                    <div class="col-4 d-flex justify-content-end align-items-center" sec:authorize="${isAuthenticated()}">
+                        <a class="btn btn-sm btn-outline-secondary" href="/admin/">Administration</a>
+                        &nbsp;
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">Sign Out</button>
+                        </form>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end align-items-center" sec:authorize="${isAnonymous()}">
+                        <a class="btn btn-sm btn-outline-secondary" href="/login">Sign in</a>
                     </div>
                 </div>
             </header>            

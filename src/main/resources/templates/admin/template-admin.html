@@ -6,7 +6,7 @@
         <title>Spring Blog</title>
         <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/public/css/dashboard.css" />
-        
+
         <!-- jquery-te -->
         <link rel="stylesheet" href="/public/jqueryte/jquery-te-1.4.0.css">        
     </head>
@@ -14,12 +14,12 @@
     <body>
 
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Spring Blog</a>
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Spring Blog Administration</a>
             <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
                     <form th:action="@{/logout}" method="post">
-                        <input type="submit" class="btn btn-sm btn-outline-secondary" value="Sign Out"/>
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Sign Out</button>
                     </form>
                 </li>
             </ul>
@@ -55,12 +55,12 @@
 
         <script src="/webjars/jquery/jquery.min.js"></script>
         <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
-        
+
         <!-- jquery-te -->
         <script src="/public/jqueryte/jquery-te-1.4.0.min.js"></script>
 
         <script layout:fragment="script">
-            
+
         </script>
 
     </body>
