@@ -28,17 +28,17 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     
-    @NotNull
-    @Size(min = 3)
+    @NotNull(message = "User name cannot be null")
+    @Size(min = 3, message = "User name is too short")
     private String name;
     
-    @NotNull
-    @Email
+    @NotNull(message = "User email cannot be null")
+    @Email(message = "User email is not valid")
     @Column(unique = true)
     private String email;
     
-    @NotNull
-    @Size(min = 3)
+    @NotNull(message = "Username cannot be null")
+    @Size(min = 3, message = "Username is too short")
     @Column(unique = true)
     private String username;
     

@@ -33,19 +33,19 @@ public class BlogComment {
     @ManyToOne
     private BlogPost blogPost;
     
-    @NotNull
-    @Size(min = 3)
+    @NotNull(message = "Commenter nickname cannot be null")
+    @Size(min = 3, message = "Commenter nickname is too short")
     private String commenterName;
     
-    @NotNull
-    @Size(min = 3)
+    @NotNull(message = "Comment title cannot be null")
+    @Size(min = 3, message = "Comment title is too short")
     private String title;
     
-    @NotNull
+    @NotNull(message = "Comment body cannot be null")
+    @Size(min = 10, message = "Comment body is too short")
     @Column(columnDefinition = "TEXT")
     private String body;
     
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
     

@@ -33,18 +33,18 @@ public class BlogPost {
     private int id;
 
     @ManyToOne
-    @NotNull
+    @NotNull(message = "Post author cannot be null")
     private User author;
     
-    @NotNull
-    @Size(min = 3)
+    @NotNull(message = "Post title cannot be null")
+    @Size(min = 3, message = "Post title is too short")
     private String title;
     
-    @NotNull
+    @NotNull(message = "Post body cannot be null")
+    @Size(min = 10, message = "Post body is too short")
     @Column(columnDefinition = "TEXT")
     private String body;
     
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
     
