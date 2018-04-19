@@ -10,12 +10,38 @@
 
                     <div class="blog-post">
                         <h2 class="blog-post-title" th:text="${post.title}">Title</h2>
-                        <p class="blog-post-meta"><span th:text="${#dates.format(post.publishDate, 'dd-MMM-yyyy')}"/> by <a href="#" th:text="${post.author.name}">Mark</a></p>
+                        <p class="blog-post-meta"><span th:text="${#dates.format(post.publishDate, 'dd-MMM-yyyy')}"/> by <a href th:text="${post.author.name}">Mark</a></p>
 
                         <p th:utext="${post.body}">This blog post shows a few different types of content that's supported and styled with Bootstrap. 
                             Basic typography, images, and code are all supported.</p>
 
                     </div><!-- /.blog-post -->
+
+                    <div sec:authorize="${isAnonymous()}">
+                        <h3>Comment</h3>
+
+                        <form id="commentForm" action="#" th:action="@{/post/{id}/comment(id=${post.id})}" th:object="${blogComment}" method="post">  
+                            <div class="form-group">
+                                <label for="commenterName">Nickname</label>
+                                <input type="text" class="form-control" th:field="*{commenterName}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" th:field="*{title}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="body">Content</label>
+                                <textarea class="form-control" rows="5" th:field="*{body}"></textarea>
+                            </div>
+                            <ul class="alert-danger">
+                                <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+                            </ul>
+                            <p class="alert-success" th:if="${message != null}">
+                                <span th:text="${message}" />
+                            </p>
+                            <button class="btn btn-primary" type="submit">Submit Comment</button>
+                        </form>
+                    </div>
 
                 </div><!-- /.blog-main -->
 
