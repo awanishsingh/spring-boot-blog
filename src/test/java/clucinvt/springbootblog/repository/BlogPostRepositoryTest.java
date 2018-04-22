@@ -35,7 +35,7 @@ public class BlogPostRepositoryTest {
     public void canSavePostViews() {
         BlogPost post = new BlogPost();
         post.setTitle("test");
-        post.setBody("test");
+        post.setBody("this is a test post. it is long enough.");
         post.setCreateDate(new Date());
         post.setAuthor(getAdmin());
 
@@ -52,7 +52,7 @@ public class BlogPostRepositoryTest {
     public void canFindPublishedPosts() {
         BlogPost post = new BlogPost();
         post.setTitle("unpublished");
-        post.setBody("unpublished");
+        post.setBody("this is an unpublished post. it is long enough.");
         post.setCreateDate(new Date());
         post.setAuthor(getAdmin());
 
