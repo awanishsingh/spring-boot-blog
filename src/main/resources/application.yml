@@ -18,4 +18,19 @@ spring:
         console:
             enabled: true
             path: /dbconsole
-            
+
+
+# Resource handling
+
+spring:
+    resources:
+        add-mappings: true
+        static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
+        
+        
+# Server configuration
+
+server:
+    compression:
+        enabled: true
+        min-response-size: 2048

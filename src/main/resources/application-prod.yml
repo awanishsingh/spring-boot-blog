@@ -13,3 +13,19 @@ spring:
         username: root
         password: 1234
         platform: mysql
+        
+        
+# Resource handling
+
+spring:
+    resources:
+        add-mappings: true
+        static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
+        
+        
+# Embedded server configuration
+
+server:
+    compression:
+        enabled: true
+        min-response-size: 2048
