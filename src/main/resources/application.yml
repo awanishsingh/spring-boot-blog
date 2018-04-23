@@ -26,6 +26,8 @@ spring:
     resources:
         add-mappings: true
         static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/
+        cache:
+            period: 3600
         
         
 # Server configuration
