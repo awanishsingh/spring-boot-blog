@@ -17,8 +17,24 @@
 
                     </div><!-- /.blog-post -->
 
+                    <div>
+                        <h3>Comments</h3>
+
+                        <div th:if="${comments.isEmpty()}">
+                            There is no comment.
+                        </div>
+
+                        <div th:unless="${comments.isEmpty()}">
+                            <div th:each="comment: ${comments}">
+                                <b><span th:text="${comment.title}" /></b><br />
+                                <i>By: <span th:text="${comment.commenterName}" /></i><br />
+                                <span th:text="${comment.body}" />
+                            </div>
+                        </div>
+                    </div><!-- /comments -->
+
                     <div sec:authorize="${isAnonymous()}">
-                        <h3>Comment</h3>
+                        <h3>Add Your Comment</h3>
 
                         <form id="commentForm" action="#" th:action="@{/post/{id}/comment(id=${post.id})}" th:object="${blogComment}" method="post">  
                             <div class="form-group">
@@ -41,7 +57,7 @@
                             </p>
                             <button class="btn btn-primary" type="submit">Submit Comment</button>
                         </form>
-                    </div>
+                    </div><!-- /comment form -->
 
                 </div><!-- /.blog-main -->
 

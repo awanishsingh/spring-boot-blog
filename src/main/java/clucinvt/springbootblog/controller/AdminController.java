@@ -5,8 +5,10 @@
  */
 package clucinvt.springbootblog.controller;
 
+import clucinvt.springbootblog.domain.BlogComment;
 import clucinvt.springbootblog.domain.BlogPost;
 import clucinvt.springbootblog.domain.User;
+import clucinvt.springbootblog.repository.BlogCommentRepository;
 import clucinvt.springbootblog.repository.BlogPostRepository;
 import clucinvt.springbootblog.repository.UserRepository;
 import java.security.Principal;
@@ -33,6 +35,8 @@ public class AdminController {
     private BlogPostRepository blogPostRepo;
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private BlogCommentRepository blogCommentRepo;
 
     @RequestMapping(value = {"", "/"})
     public String index(Model model) {
@@ -69,9 +73,9 @@ public class AdminController {
             return "redirect:/admin/";
         }
     }
-    
+
     @RequestMapping(value = "publish", method = {RequestMethod.POST})
-    public String publish(@RequestParam("id") int id) {
+    public String publishPost(@RequestParam("id") int id) {
         BlogPost post = blogPostRepo.findById(id).get();
         post.setPublishDate(new Date());
         blogPostRepo.save(post);
@@ -79,10 +83,32 @@ public class AdminController {
     }
 
     @RequestMapping(value = "unpublish", method = {RequestMethod.POST})
-    public String unpublish(@RequestParam("id") int id) {
+    public String unpublishPost(@RequestParam("id") int id) {
         BlogPost post = blogPostRepo.findById(id).get();
         post.setPublishDate(null);
         blogPostRepo.save(post);
         return "redirect:/admin/";
+    }
+
+    @RequestMapping(value = "comments", method = {RequestMethod.GET})
+    public String comments(Model model) {
+        model.addAttribute("comments", blogCommentRepo.findAllCommentDescriptors());
+        return "admin/comments";
+    }
+
+    @RequestMapping(value = "approve", method = {RequestMethod.POST})
+    public String approveComment(@RequestParam("id") int id) {
+        BlogComment comment = blogCommentRepo.findById(id).get();
+        comment.setApproveDate(new Date());
+        blogCommentRepo.save(comment);
+        return "redirect:/admin/comments";
+    }
+
+    @RequestMapping(value = "disapprove", method = {RequestMethod.POST})
+    public String disapproveComment(@RequestParam("id") int id) {
+        BlogComment comment = blogCommentRepo.findById(id).get();
+        comment.setApproveDate(null);
+        blogCommentRepo.save(comment);
+        return "redirect:/admin/comments";
     }
 }

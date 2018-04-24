@@ -38,20 +38,20 @@ public class PostController {
     private BlogCommentRepository blogCommentRepo;
 
     @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
-    public String detail(@PathVariable("id") int id, Model model, BlogComment blogComment) throws NotFoundException {
+    public String postDetails(@PathVariable("id") int id, Model model, BlogComment blogComment) throws NotFoundException {
 
-        loadDetailData(id, model);
+        loadPostDetails(id, model);
         model.addAttribute("blogComment", blogComment);
 
         return "post";
     }
 
     @RequestMapping(value = "/{id}/comment", method = {RequestMethod.POST})
-    public String comment(@PathVariable("id") int id, @Valid BlogComment blogComment,
+    public String submitComment(@PathVariable("id") int id, @Valid BlogComment blogComment,
             BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws NotFoundException {
 
         if (bindingResult.hasErrors()) {
-            loadDetailData(id, model);
+            loadPostDetails(id, model);
             return "post";
         }
 
@@ -68,7 +68,7 @@ public class PostController {
         return "redirect:/post/" + id;
     }
 
-    private void loadDetailData(int id, Model model) throws NotFoundException {
+    private void loadPostDetails(int id, Model model) throws NotFoundException {
         Optional<BlogPost> post = blogPostRepo.findById(id);
         if (!post.isPresent()) {
             throw new NotFoundException();
@@ -77,5 +77,7 @@ public class PostController {
 
         Pageable titlePageable = PageRequest.of(0, 10);
         model.addAttribute("titles", blogPostRepo.findPublishedPostTitles(titlePageable).getContent());
+        
+        model.addAttribute("comments", blogCommentRepo.findApprovedCommentsByPost(id));
     }
 }

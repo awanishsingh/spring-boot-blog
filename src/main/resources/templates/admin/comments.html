@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/template-admin.html}" xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" layout:fragment="main-content">
+
+            <h2>Comments</h2>
+
+            <div th:if="${comments.isEmpty()}">
+                There is no comment.
+            </div>
+
+            <div class="table-responsive" th:unless="${comments.isEmpty()}">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Post Id</th>
+                            <th>Commenter Name</th>
+                            <th>Title</th>
+                            <th>Create Date</th>
+                            <th>Approve Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="comment: ${comments}">
+                            <td th:text="${comment.id}">1</td>
+                            <td><a th:href="@{/post/{id}(id=${comment.postId})}" th:text="${comment.postId}">1</a></td>
+                            <td th:text="${comment.commenterName}">ipsum</td>
+                            <td th:text="${comment.title}">dolor</td>
+                            <td th:text="${comment.createDate}">sit</td>
+                            <td th:text="${comment.approveDate}">sit</td>
+                            <td>
+                                <div th:if="${comment.approveDate == null}">
+                                    <form th:action="@{/admin/approve}" method="post">
+                                        <input type="hidden" name="id" th:value="*{comment.id}" />
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Approve</button>
+                                    </form>
+                                </div>
+                                <div th:if="${comment.approveDate != null}">
+                                    <form th:action="@{/admin/disapprove}" method="post">
+                                        <input type="hidden" name="id" th:value="*{comment.id}" />
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Disapprove</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </body>
+
+</html>

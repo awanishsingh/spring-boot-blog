@@ -28,7 +28,7 @@ public class UserRepositoryIT {
     public void canCrud() {
         Assert.assertNotNull(userRepo);
         
-        Assert.assertEquals(1, userRepo.count());
+        long count = userRepo.count();
         
         User u = new User();
         u.setName("test");
@@ -36,7 +36,7 @@ public class UserRepositoryIT {
         u.setPassword("test");
         u.setEmail("test@gmail.com");
         userRepo.save(u);        
-        Assert.assertEquals(2, userRepo.count());
+        Assert.assertEquals(count + 1, userRepo.count());
     }
     
 }
