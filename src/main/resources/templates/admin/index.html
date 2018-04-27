@@ -19,6 +19,7 @@
                             <th>Author</th>
                             <th>Create Date</th>
                             <th>Publish Date</th>
+                            <th>Views</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -29,6 +30,7 @@
                             <td th:text="${post.authorName}">ipsum</td>
                             <td th:text="${post.createDate}">dolor</td>
                             <td th:text="${post.publishDate}">sit</td>
+                            <td th:text="${post.viewCount}"></td>
                             <td>
                                 <div th:if="${post.publishDate == null}">
                                     <form th:action="@{/admin/publish}" method="post">

@@ -18,4 +18,5 @@ public interface BlogPostDescriptor {
     String getAuthorName();
     Date getCreateDate();
     Date getPublishDate();
+    int getViewCount();
 }

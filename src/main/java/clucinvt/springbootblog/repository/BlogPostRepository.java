@@ -29,7 +29,7 @@ public interface BlogPostRepository extends JpaRepository<BlogPost, Integer> {
     @Query("SELECT p.id as id, p.title as title FROM BlogPost p WHERE publishDate IS NOT NULL ORDER BY publishDate DESC")
     Page<BlogPostTitle> findPublishedPostTitles(Pageable pageable);
     
-    @Query("SELECT p.id as id, p.title as title, p.author.name as authorName, p.createDate as createDate, p.publishDate as publishDate"
-            + " FROM BlogPost p ORDER BY createDate DESC")
+    @Query("SELECT p.id as id, p.title as title, p.author.name as authorName, p.createDate as createDate, p.publishDate as publishDate, count(v) as viewCount"
+            + " FROM BlogPost p LEFT JOIN p.postViews v GROUP BY p ORDER BY createDate DESC")
     List<BlogPostDescriptor> findAllPostDescriptors();
 }
