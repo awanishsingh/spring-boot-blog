@@ -8,6 +8,7 @@ package clucinvt.springbootblog.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -23,7 +24,7 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    CustomUserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
