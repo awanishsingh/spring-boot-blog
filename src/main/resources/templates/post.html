@@ -25,10 +25,12 @@
                         </div>
 
                         <div th:unless="${comments.isEmpty()}">
-                            <div th:each="comment: ${comments}">
-                                <b><span th:text="${comment.title}" /></b><br />
-                                <i>By: <span th:text="${comment.commenterName}" /></i><br />
-                                <span th:text="${comment.body}" />
+                            <div class="card" th:each="comment: ${comments}">
+                                <div class="card-body">
+                                    <h5 class="card-title"><span th:text="${comment.title}" /></h5>
+                                    <h6 class="card-subtitle mb-2 text-muted"><span th:text="${comment.commenterName}" /></h6>
+                                    <p class="card-text"><span th:text="${comment.body}" /></p>
+                                </div>
                             </div>
                         </div>
                     </div><!-- /comments -->
